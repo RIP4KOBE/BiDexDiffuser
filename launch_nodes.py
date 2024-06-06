@@ -7,7 +7,6 @@ import tyro
 from camera_node import ZMQServerCamera, ZMQServerCameraFaster
 from robot_node import ZMQServerRobot
 from robots.robot import BimanualRobot
-import json
 
 
 @dataclass
