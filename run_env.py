@@ -122,6 +122,8 @@ class Args:
 def main(args):
 
     # <editor-fold desc="Agent Setup">
+
+    # Selecting the data collection agent
     camera_clients = {
         "base": ZMQClientCamera(port=args.base_camera_port, host=args.hostname),
     }
@@ -199,6 +201,7 @@ def main(args):
     else:
         raise ValueError(f"Invalid agent name for bimanual: {args.agent}")
 
+    # setting the initial joint positions of the robot
     if args.agent == "quest":
         # using grippers
         reset_joints_left = np.deg2rad([-80, -140, -80, -85, -10, 80, 0])
@@ -335,6 +338,8 @@ def main(args):
     # </editor-fold>
 
     # <editor-fold desc="Exception Handling and Data Saving">
+    # This code snippet handles the cleanup process after the trajectory collection loop is interrupted by a keyboard interrupt (Ctrl+C) or completes successfully.
+    # The purpose of this code snippet is to handle the cleanup and post-processing tasks after the trajectory collection loop is interrupted or completes. It includes saving collected frames as a video and saving frame frequencies as text files for analysis or visualization purposes.
     except KeyboardInterrupt:
         print_color("\nInterrupted!", color="red", attrs=("bold",))
     finally:
