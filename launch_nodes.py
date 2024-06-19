@@ -41,19 +41,20 @@ def launch_robot_server(port: int, args: Args):
         robot = URRobot(robot_ip=args.robot_ip)
     elif args.robot == "bimanual_ur":
         from robots.ur import URRobot
+        from robots.franka import FrankaRobot
 
         if args.hand_type == "ability":
             # 6 DoF Ability Hand
             # robot_l - right hand; robot_r - left hand
-            _robot_l = URRobot(
-                robot_ip="111.111.1.3",
+            _robot_l = FrankaRobot(
+                robot_ip="196.168.0.120",
                 no_gripper=False,
                 gripper_type="ability",
                 grip_range=args.ability_gripper_grip_range,
                 port_idx=1,
             )
-            _robot_r = URRobot(
-                robot_ip="111.111.2.3",
+            _robot_r = FrankaRobot(
+                robot_ip="196.168.0.121",
                 no_gripper=False,
                 gripper_type="ability",
                 grip_range=args.ability_gripper_grip_range,
