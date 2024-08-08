@@ -95,6 +95,7 @@ class Agent:
         self.num_workers = num_workers
         self.binarize_touch = binarize_touch
 
+        # <editor-fold desc="Processing images in the robot dataset">
         # Merge depth and rgb image
         if "depth" in representation_type:
             self.image_channel = 4
@@ -205,7 +206,9 @@ class Agent:
                 std=std_vec,
             ),
         )
+        # </editor-fold>
 
+        # <editor-fold desc="Defines the encoders for different types of observations">
         self.stats = None
         obs_dim = 0
         encoders = {}
@@ -275,7 +278,9 @@ class Agent:
                 touch_dim = output_sizes["touch"]
             encoders["touch"] = touch_encoder
             obs_dim += touch_dim
+        # </editor-fold>
 
+        # <editor-fold desc="Initializes the diffusion policy network">
         self.policy = DiffusionPolicy(
             obs_horizon=obs_horizon,
             obs_dim=obs_dim,
@@ -305,6 +310,7 @@ class Agent:
         self.state_noise = state_noise
 
         self.predict_eef_delta = predict_eef_delta
+        # </editor-fold>
 
     def _get_image_observation(self, data):
         # allocate memory for the image

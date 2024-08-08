@@ -108,7 +108,7 @@ if __name__ == "__main__":
         "--ckpt_dirs",
         nargs="+",
         default=[
-            "/shared/ckpts/data_banana",
+            "/home/zhuoli/bidexdiffuser/model/0806_191241_ixSX-camera=012-identity=False-repr=IDEHT-oh=1-ah=8-ph=16-prefix=None-do=0.0-imgos=32-wd=1e-05-use_ddim=False-binarize_touch=False",
         ],
     )
     parser.add_argument("-m", "--mode", type=str, default="gen")

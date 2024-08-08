@@ -71,7 +71,7 @@ class DiffusionPolicy:
             noise_pred_net = ConditionalUnet1D(
                 input_dim=action_dim, global_cond_dim=obs_dim * obs_horizon
             )
-            # the final arch has 2 parts
+            # the final arch has 2 parts: one for the state encoder and another for the noise prediction network
             self.nets = nn.ModuleDict({"noise_pred_net": noise_pred_net})
 
         for rt in representation_type:

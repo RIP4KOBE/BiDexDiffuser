@@ -4,8 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db2a13f4-b8e1-4b9c-b6ee-a5de2b67b06e" name="Changes" comment="">
+    <list default="true" id="05369adf-e2a8-4922-b1ab-a80d1f58a252" name="Changes" comment="implement part of the franka data collection code">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/BiDexDiffuser.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/hato.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eval_dir.py" beforeDir="false" afterPath="$PROJECT_DIR$/eval_dir.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning/dp/learner.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning/dp/learner.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning/dp/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning/dp/pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workflow/download_dataset.sh" beforeDir="false" afterPath="$PROJECT_DIR$/workflow/download_dataset.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workflow/gen_deploy_scripts.py" beforeDir="false" afterPath="$PROJECT_DIR$/workflow/gen_deploy_scripts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workflow/split_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/workflow/split_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +45,7 @@
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
-  <component name="ProjectId" id="2hMsEFpsVOu4VnSNYe2qKABE6DR" />
+  <component name="ProjectId" id="2hUt4h79vv8cSbPXNqlK6n0E96r" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -41,21 +53,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Python.camera_node.executor&quot;: &quot;Run&quot;,
-    &quot;Python.launch_nodes.executor&quot;: &quot;Run&quot;,
-    &quot;Python.run_env.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/zhuoli/hato&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.eval_dir.executor": "Run",
+    "Python.gen_deploy_scripts.executor": "Run",
+    "Python.split_data.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/zhuoli/dobot_xtrainer",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
-  <component name="RunManager" selected="Python.run_env">
-    <configuration name="camera_node" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="hato" />
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/robots" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.gen_deploy_scripts">
+    <configuration name="eval_dir" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="bidexdiffuser" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -67,7 +83,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/camera_node.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/eval_dir.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -76,8 +92,30 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="launch_nodes" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="hato" />
+    <configuration name="gen_deploy_scripts" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="bidexdiffuser" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/workflow" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/workflow/gen_deploy_scripts.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="split_data" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="bidexdiffuser" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -89,7 +127,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/launch_nodes.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/workflow/split_data.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -98,55 +136,68 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="run_env" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="hato" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/run_env.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+    <list>
+      <item itemvalue="Python.eval_dir" />
+      <item itemvalue="Python.gen_deploy_scripts" />
+      <item itemvalue="Python.split_data" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.run_env" />
-        <item itemvalue="Python.launch_nodes" />
-        <item itemvalue="Python.camera_node" />
+        <item itemvalue="Python.gen_deploy_scripts" />
+        <item itemvalue="Python.eval_dir" />
+        <item itemvalue="Python.split_data" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-babbdf50b680-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.15989.155" />
+        <option value="bundled-python-sdk-f5635417b835-31b6be0877a2-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.18968.29" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="db2a13f4-b8e1-4b9c-b6ee-a5de2b67b06e" name="Changes" comment="" />
-      <created>1717415166475</created>
+      <changelist id="05369adf-e2a8-4922-b1ab-a80d1f58a252" name="Changes" comment="" />
+      <created>1717660293340</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1717415166475</updated>
+      <updated>1717660293340</updated>
     </task>
+    <task id="LOCAL-00001" summary="update comment of run_env.py">
+      <option name="closed" value="true" />
+      <created>1717664604460</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1717664604460</updated>
+    </task>
+    <task id="LOCAL-00002" summary="implement part of the franka data collection code">
+      <option name="closed" value="true" />
+      <created>1718764062510</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1718764062510</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="update comment of run_env.py" />
+    <MESSAGE value="implement part of the franka data collection code" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement part of the franka data collection code" />
   </component>
 </project>

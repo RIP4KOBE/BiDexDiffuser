@@ -12,6 +12,12 @@ def eval_ckpts(ckpt_paths, eval_dir, save_path):
         with open(save_path, "rb") as f:
             mse_dict = pickle.load(f)
         print(f"Loaded previous MSE dict from {save_path}")
+    
+    else:
+        # Ensure the file exists
+        os.makedirs(os.path.dirname(save_path))
+
+
 
     eval_loader = None
     last_arg = None
@@ -51,15 +57,13 @@ if __name__ == "__main__":
         nargs="+",
         type=str,
         default=[
-            "model_epoch_100.ckpt",
-            "model_epoch_200.ckpt",
-            "model_epoch_300.ckpt",
+            "/home/zhuoli/bidexdiffuser/model/0806_191241_ixSX-camera=012-identity=False-repr=IDEHT-oh=1-ah=8-ph=16-prefix=None-do=0.0-imgos=32-wd=1e-05-use_ddim=False-binarize_touch=False/model_epoch_290.ckpt",
         ],
     )
     args.add_argument(
         "--eval_dir",
         type=str,
-        default="/split_data/data_pour_train_10",
+        default="/home/zhuoli/bidexdiffuser/workflow/data_banana/bc_data_banana_random",
     )
     args.add_argument("--save_path", type=str, default=None)
 
@@ -67,5 +71,5 @@ if __name__ == "__main__":
 
     if args.save_path is None:
         data_name = os.path.basename(args.eval_dir)
-        args.save_path = "./eval_results/eval_{}.pkl".format(data_name)
+        args.save_path = "/home/zhuoli/bidexdiffuser/eval_results/eval_{}.pkl".format(data_name)
     eval_ckpts(args.ckpt_path, args.eval_dir, args.save_path)
