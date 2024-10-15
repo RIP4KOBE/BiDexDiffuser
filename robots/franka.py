@@ -18,7 +18,7 @@ class FrankaRobot(Robot):
         which_arm: str = "",
         no_gripper: bool = False,
         gripper_type="",
-        gripper_dim: int = 0
+        gripper_dim: int = 2
     ):
         """Initialize the Franka robot and its gripper."""
         [print("in franka robot:", which_arm) for _ in range(3)]
@@ -83,6 +83,11 @@ class FrankaRobot(Robot):
             return 7
 
     def _get_gripper_pos(self) -> np.ndarray:
+        """Get the current state of the Gripper.
+
+        Returns:
+            T: The current state of the Gripper.
+        """
         if self.gripper_type == "softhand":
             gripper_pos = np.array(self.gripper.get_current_position())
             return gripper_pos
@@ -166,14 +171,10 @@ class FrankaRobot(Robot):
         )
     def get_observations(self) -> Dict[str, np.ndarray]:
         joints = self.get_joint_state()
-        joint_vels = self.get_joint_velocities()
-        # eef_speed = self.get_eef_speed()
         pos_quat = self.get_eef_pose()
         gripper_pos = self._get_gripper_pos()
         return {
             "joint_positions": joints,
-            "joint_velocities": joint_vels,
-            # "eef_speed": eef_speed,
             "ee_pos_quat": pos_quat,  # TODO: this is pos_rot(4×4) actually
             "gripper_position": gripper_pos,
         }

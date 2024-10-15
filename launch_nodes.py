@@ -15,14 +15,15 @@ from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 @dataclass
 class Args:
     robot: str = "curi"
-    hand_type: str = ""
+    no_gripper = False
+    hand_type: str = "soft_hand"
     hostname: str = "192.168.2.2"
     faster: bool = True
     cam_names: Tuple[str, ...] = "435"
     ability_gripper_grip_range: int = 110
     img_size: Optional[Tuple[int, int]] = None  # (320, 240)
 
-
+# TODO: 相机模组仍待开发
 def launch_server_cameras(port: int, camera_id: List[str], args: Args):
     from cameras.realsense_camera import RealSenseCamera
 
@@ -37,25 +38,23 @@ def launch_server_cameras(port: int, camera_id: List[str], args: Args):
 
 
 def launch_robot_server(port: int, args: Args):
-    if args.robot == "curi":
+    if args.robot == "curi_single_arm":
         from robots.franka import FrankaRobot
         robot = FrankaRobot(which_arm="left",
-                            no_gripper=True)
+                            no_gripper=args.no_gripper)
     elif args.robot == "bimanual_curi":
         from robots.franka import FrankaRobot
-
-        if args.hand_type == "ability":
-            # 6 DoF Ability Hand
+        if args.no_gripper == False:
             _robot_l = FrankaRobot(
                 which_arm="left",
-                no_gripper=False,
-                gripper_type="soft_hand",
+                no_gripper=args.no_gripper,
+                gripper_type=args.hand_type,
                 gripper_dim=2,
             )
             _robot_r = FrankaRobot(
                 which_arm="right",
-                no_gripper=False,
-                gripper_type="soft_hand",
+                no_gripper=args.no_gripper,
+                gripper_type=args.hand_type,
                 gripper_dim=2
             )
         else:
