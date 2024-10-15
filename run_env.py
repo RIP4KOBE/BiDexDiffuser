@@ -96,13 +96,13 @@ class Args:
     show_camera_view: bool = True
 
     agent: str = "quest"
-    robot_type: str = "ur5"
+    robot_type: str = "bimanual_curi"
     save_data: bool = False
     save_depth: bool = True
     save_png: bool = False
     data_dir: str = "/shared/data/bc_data"
     verbose: bool = False
-    safe: bool = False
+    safe: bool = True
     use_vel_ik: bool = False
 
     num_diffusion_iters_compile: int = 15  # used for compilation only for now
@@ -215,8 +215,8 @@ def main(args):
         reset_joints_right = np.concatenate([np.deg2rad(arm_joints_right), hand_joints])
     reset_joints = np.concatenate([reset_joints_left, reset_joints_right])
     curr_joints = env.get_obs()["joint_positions"]
-    curr_joints[6:12] = hand_joints
-    curr_joints[18:] = hand_joints
+    curr_joints[7:13] = hand_joints
+    curr_joints[19:] = hand_joints
     print("Current joints:", curr_joints)
     print("Reset joints:", reset_joints)
     max_delta = (np.abs(curr_joints - reset_joints)).max()
@@ -238,17 +238,17 @@ def main(args):
     joints = obs["joint_positions"]
 
     if args.agent == "quest":
-        ur_idx = [i for i in range(len(joints))]
+        curi_idx = [i for i in range(len(joints))]
         hand_idx = None
     else:
-        ur_idx = list(range(0, 6)) + list(range(12, 18))
-        hand_idx = list(range(6, 12)) + list(range(18, 24))
+        curi_idx = list(range(0, 7)) + list(range(13, 20))
+        hand_idx = list(range(7, 13)) + list(range(20, 26))
 
     if args.safe:
         max_joint_delta = 0.5
         max_hand_delta = 0.1
         safety_wrapper = SafetyWrapper(
-            ur_idx, hand_idx, agent, delta=max_joint_delta, hand_delta=max_hand_delta
+            curi_idx, hand_idx, agent, delta=max_joint_delta, hand_delta=max_hand_delta
         )
 
     print(f"Start pos: {len(start_pos)}", f"Joints: {len(joints)}")

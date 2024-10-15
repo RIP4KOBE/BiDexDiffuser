@@ -8,13 +8,15 @@ from camera_node import ZMQServerCamera, ZMQServerCameraFaster
 from robot_node import ZMQServerRobot
 from robots.robot import BimanualRobot
 
+import rospy
+from geometry_msgs.msg import Pose, TransformStamped
+from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 
 @dataclass
 class Args:
-    robot: str = "bimanual_ur"
+    robot: str = "curi"
     hand_type: str = ""
-    hostname: str = "127.0.0.1"
-    robot_ip: str = "111.111.1.1"
+    hostname: str = "192.168.2.2"
     faster: bool = True
     cam_names: Tuple[str, ...] = "435"
     ability_gripper_grip_range: int = 110
@@ -35,40 +37,36 @@ def launch_server_cameras(port: int, camera_id: List[str], args: Args):
 
 
 def launch_robot_server(port: int, args: Args):
-    if args.robot == "ur":
-        from robots.ur import URRobot
-
-        robot = URRobot(robot_ip=args.robot_ip)
-    elif args.robot == "bimanual_ur":
-        from robots.ur import URRobot
+    if args.robot == "curi":
+        from robots.franka import FrankaRobot
+        robot = FrankaRobot(which_arm="left",
+                            no_gripper=True)
+    elif args.robot == "bimanual_curi":
         from robots.franka import FrankaRobot
 
         if args.hand_type == "ability":
             # 6 DoF Ability Hand
-            # robot_l - right hand; robot_r - left hand
             _robot_l = FrankaRobot(
-                robot_ip="196.168.0.120",
+                which_arm="left",
                 no_gripper=False,
-                gripper_type="ability",
-                grip_range=args.ability_gripper_grip_range,
-                port_idx=1,
+                gripper_type="soft_hand",
+                gripper_dim=2,
             )
             _robot_r = FrankaRobot(
-                robot_ip="196.168.0.121",
+                which_arm="right",
                 no_gripper=False,
-                gripper_type="ability",
-                grip_range=args.ability_gripper_grip_range,
-                port_idx=2,
+                gripper_type="soft_hand",
+                gripper_dim=2
             )
         else:
-            # Robotiq gripper
-            _robot_l = URRobot(robot_ip="111.111.1.3", no_gripper=False)
-            _robot_r = URRobot(robot_ip="111.111.2.3", no_gripper=False)
+            # Franka_gripper
+            _robot_l = FrankaRobot(which_arm="left", no_gripper=True)
+            _robot_r = FrankaRobot(which_arm="right", no_gripper=True)
         robot = BimanualRobot(_robot_l, _robot_r)
     else:
         raise NotImplementedError(f"Robot {args.robot} not implemented")
     server = ZMQServerRobot(robot, port=port, host=args.hostname)
-    print(f"Starting robot server on port {port}")
+    print(f"Starting robot node")
     server.serve()
 
 
@@ -87,9 +85,9 @@ def create_camera_server(args: Args) -> List[Process]:
 
 
 def main(args):
-    camera_server = create_camera_server(args)
-    print("Starting camera server process")
-    camera_server.start()
+    # camera_server = create_camera_server(args)
+    # print("Starting camera server process")
+    # camera_server.start()
 
     launch_robot_server(6000, args)
 

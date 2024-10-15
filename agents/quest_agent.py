@@ -5,7 +5,7 @@ import quaternion
 from dm_control import mjcf
 from dm_control.mujoco.wrapper import mjbindings
 from dm_control.utils.inverse_kinematics import qpos_from_site_pose, nullspace_method
-from oculus_reader.reader import OculusReader
+from oculus_reader.oculus_reader.reader import OculusReader
 from agents.agent import Agent
 
 mjlib = mjbindings.mjlib
@@ -72,6 +72,7 @@ def velocity_ik(physics,
       physics.model.ptr, physics.data.ptr, jac_pos, jac_rot, site_id)
 
   dof_indices = []
+  # 取出模型关节id
   for jn in joint_names:
     dof_idx = physics.model.joint(jn).id
     dof_indices.append(dof_idx)
@@ -104,11 +105,13 @@ class SingleArmQuestAgent(Agent):
         assert self.which_hand in ["l", "r"]
 
         self.oculus_reader = OculusReader()
+        # 修改模型地址
         if robot_type == "ur5":
             mjcf_model = mjcf.from_path("universal_robots_ur5e/ur5e.xml")
             mjcf_model.name = robot_type
         else:
             raise ValueError(f"Unknown robot type: {robot_type}")
+
         self.physics = mjcf.Physics.from_mjcf_model(mjcf_model)
         self.control_active = False
         self.reference_quest_pose = None
@@ -162,7 +165,7 @@ class SingleArmQuestAgent(Agent):
             return np.concatenate(
                 [current_qpos, obs["joint_positions"][num_dof:] * 0.0]
             )
-
+        # 此处为控制拇指两自由度关节的代码，一般在run_env中设置为mode3即增量模式
         if self.eef_control_mode == 0:
             new_gripper_angle = [button_data[grip_key][0]]
         elif self.eef_control_mode == 1:
@@ -188,6 +191,7 @@ class SingleArmQuestAgent(Agent):
                     max(0, min(self.reference_js[0] + js_x * self.js_speed_scale, 1)),
                     max(0, min(self.reference_js[1] + js_y * self.js_speed_scale, 1)),
                 ]
+            #     TODO: add the control of the soft_hand
             new_gripper_angle = [
                 button_data[grip_key][0],
                 button_data[grip_key][0],
@@ -219,7 +223,7 @@ class SingleArmQuestAgent(Agent):
                 delta_pos_ur = (
                     apply_transfer(t_mat, delta_pos) * self.translation_scaling_factor
                 )
-                # ? is this the case?
+                # ? is this the case? yes!
                 delta_rot_ur = quest2ur[:3, :3] @ delta_rot @ ur2quest[:3, :3]
                 if self._verbose:
                     print(f"delta pos and rot in VR space: \n{delta_pos}, {delta_rot}")

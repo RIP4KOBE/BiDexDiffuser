@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="VcsDirectoryMappings">
-    <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../deoxys_control" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../deoxys_control/deoxys/libfranka" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../deoxys_control/deoxys/libfranka/common" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../deoxys_control/deoxys/protobuf" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../deoxys_control/deoxys/protobuf/third_party/abseil-cpp" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../deoxys_control/deoxys/protobuf/third_party/benchmark" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../deoxys_control/deoxys/protobuf/third_party/googletest" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../deoxys_control/deoxys/protobuf/third_party/jsoncpp" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../deoxys_control/deoxys/spdlog" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../deoxys_control/deoxys/yaml-cpp" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../deoxys_control/deoxys/zmqpp" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../oculus_reader" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../qb_hand/src/qbdevice-ros" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../qb_hand/src/qbdevice-ros/qb_device_driver/api/qbdevice-api-7.x.x" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../qb_hand/src/qbdevice-ros/qb_device_driver/api/qbdevice-api-7.x.x/qbrobotics-driver" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../qb_hand/src/qbdevice-ros/qb_device_driver/api/qbdevice-api-7.x.x/serial" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../qb_hand/src/qbhand-ros" vcs="" />
   </component>
 </project>

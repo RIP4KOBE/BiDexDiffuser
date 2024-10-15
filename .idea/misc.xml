@@ -3,5 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="hato" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="hato" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="$PROJECT_DIR$/../../BiDexDiffuser_env" project-jdk-type="Python SDK" />
 </project>

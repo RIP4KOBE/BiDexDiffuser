@@ -40,8 +40,8 @@ class BimanualAgent(Agent):
 
 
 class SafetyWrapper:
-    def __init__(self, ur_idx, hand_idx, agent, delta=0.5, hand_delta=0.1):
-        self.ur_idx = ur_idx
+    def __init__(self, curi_idx, hand_idx, agent, delta=0.5, hand_delta=0.1):
+        self.curi_idx = curi_idx
         self.hand_idx = hand_idx
         self.agent = agent
         self.delta = delta
@@ -100,20 +100,20 @@ class SafetyWrapper:
             action[12:15] = right_eef_target
         else:
             # check if action is too big
-            if (np.abs(action[self.ur_idx] - joints[self.ur_idx]) > self.delta).any():
+            if (np.abs(action[self.curi_idx] - joints[self.curi_idx]) > self.delta).any():
                 print("Action is too big")
 
                 # print which joints are too big
                 joint_index = np.where(np.abs(action - joints) > self.delta)[0]
                 for j in joint_index:
-                    if j in self.ur_idx:
+                    if j in self.curi_idx:
                         print(
                             f"Joint [{j}], leader: {action[j]}, follower: {joints[j]}, diff: {action[j] - joints[j]}"
                         )
-            action[self.ur_idx] = np.clip(
-                action[self.ur_idx],
-                joints[self.ur_idx] - self.delta,
-                joints[self.ur_idx] + self.delta,
+            action[self.curi_idx] = np.clip(
+                action[self.curi_idx],
+                joints[self.curi_idx] - self.delta,
+                joints[self.curi_idx] + self.delta,
             )
 
         if self.hand_idx is not None:

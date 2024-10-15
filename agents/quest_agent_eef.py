@@ -2,7 +2,7 @@ from typing import Dict
 
 import numpy as np
 import quaternion
-from oculus_reader.reader import OculusReader
+from oculus_reader.oculus_reader.reader import OculusReader
 from agents.agent import Agent
 
 
