@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="05369adf-e2a8-4922-b1ab-a80d1f58a252" name="Changes" comment="modify readme and commit other old files">
-      <change beforePath="$PROJECT_DIR$/.idea/bidexdiffuser.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/bidexdiffuser.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="05369adf-e2a8-4922-b1ab-a80d1f58a252" name="Changes" comment="add .idea/ to gitignore">
+      <change beforePath="$PROJECT_DIR$/../PycharmProjects/BiDexDiffuser/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../PycharmProjects/BiDexDiffuser/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,9 +17,10 @@
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$/../PycharmProjects/BiDexDiffuser" value="HATO_LDX" />
+        <entry key="$PROJECT_DIR$" value="HATO_LDX" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../Bi-DexManip" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -29,38 +29,23 @@
     &quot;assignee&quot;: &quot;RIP4KOBE&quot;
   }
 }</component>
-  <component name="GitHubPullRequestState">{
-  &quot;prStates&quot;: [
+  <component name="GitHubPullRequestState"><![CDATA[{
+  "prStates": [
     {
-      &quot;id&quot;: {
-        &quot;id&quot;: &quot;PR_kwDOMFTegc5-pOCA&quot;,
-        &quot;number&quot;: 1
+      "id": {
+        "id": "PR_kwDOMFTegc5-pOCA",
+        "number": 1
       },
-      &quot;lastSeen&quot;: 1729080153392
+      "lastSeen": 1729091007216
     }
   ]
-}</component>
+}]]></component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
     <option name="recentBranches">
       <RecentBranches>
         <option name="branchesForRepo">
           <list>
-            <RecentBranchesForRepo>
-              <option name="branches">
-                <list>
-                  <RecentBranch>
-                    <option name="branchName" value="HATO_LDX" />
-                    <option name="lastUsedInstant" value="1729070174" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1729069385" />
-                  </RecentBranch>
-                </list>
-              </option>
-              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
-            </RecentBranchesForRepo>
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
@@ -92,15 +77,30 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="HATO_LDX" />
-                    <option name="lastUsedInstant" value="1729079383" />
+                    <option name="lastUsedInstant" value="1729080763" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1729079335" />
+                    <option name="lastUsedInstant" value="1729080739" />
                   </RecentBranch>
                 </list>
               </option>
               <option name="repositoryRootUrl" value="file://$PROJECT_DIR$/../PycharmProjects/BiDexDiffuser" />
+            </RecentBranchesForRepo>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1729090959" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="HATO_LDX" />
+                    <option name="lastUsedInstant" value="1729090766" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
             </RecentBranchesForRepo>
           </list>
         </option>
@@ -111,7 +111,8 @@
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/RIP4KOBE/BiDexDiffuser.git&quot;,
     &quot;accountId&quot;: &quot;6e2a1b2b-a0ea-4c50-8d75-e63823b73a74&quot;
-  }
+  },
+  &quot;editorReviewEnabled&quot;: false
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../anaconda3/envs/hato/lib/python3.9/site-packages/diffusers/training_utils.py" root0="SKIP_INSPECTION" />
@@ -129,11 +130,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "Python.eval_dir.executor": "Run",
     "Python.gen_deploy_scripts.executor": "Run",
     "Python.split_data.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "#1 on master",
+    "git-widget-placeholder": "#1 on main",
     "last_opened_file_path": "/home/zhuoli/bidexdiffuser",
     "settings.editor.selected.configurable": "com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable"
   }
@@ -273,7 +275,23 @@
       <option name="project" value="LOCAL" />
       <updated>1726641153685</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="modify readme and commit other old files">
+      <option name="closed" value="true" />
+      <created>1729080497725</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1729080497725</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add .idea/ to gitignore">
+      <option name="closed" value="true" />
+      <created>1729089719783</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1729089719783</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -292,6 +310,7 @@
     <MESSAGE value="implement part of the franka data collection code" />
     <MESSAGE value="Debug the training, evaluation and deployment code" />
     <MESSAGE value="modify readme and commit other old files" />
-    <option name="LAST_COMMIT_MESSAGE" value="modify readme and commit other old files" />
+    <MESSAGE value="add .idea/ to gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="add .idea/ to gitignore" />
   </component>
 </project>
