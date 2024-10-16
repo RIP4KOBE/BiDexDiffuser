@@ -1,7 +1,7 @@
 */__pycache__/
 *.pyc
 *.pkl
-*.idea
+.idea/
 *.pth
 *.zip
 *.DS_Store
