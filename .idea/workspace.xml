@@ -4,20 +4,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="05369adf-e2a8-4922-b1ab-a80d1f58a252" name="Changes" comment="modify readme and commit other old files" />
+    <list default="true" id="05369adf-e2a8-4922-b1ab-a80d1f58a252" name="Changes" comment="modify readme and commit other old files">
+      <change beforePath="$PROJECT_DIR$/.idea/bidexdiffuser.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/bidexdiffuser.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/../PycharmProjects/BiDexDiffuser" value="HATO_LDX" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
     &quot;assignee&quot;: &quot;RIP4KOBE&quot;
   }
+}</component>
+  <component name="GitHubPullRequestState">{
+  &quot;prStates&quot;: [
+    {
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOMFTegc5-pOCA&quot;,
+        &quot;number&quot;: 1
+      },
+      &quot;lastSeen&quot;: 1729080153392
+    }
+  ]
 }</component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
@@ -39,6 +60,47 @@
                 </list>
               </option>
               <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1729079334" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$/../librealsense/build/third-party/libcurl" />
+            </RecentBranchesForRepo>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1729079336" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="caitongbiao" />
+                    <option name="lastUsedInstant" value="1729079335" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$/../Documents/dobot_xtrainer" />
+            </RecentBranchesForRepo>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="HATO_LDX" />
+                    <option name="lastUsedInstant" value="1729079383" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1729079335" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$/../PycharmProjects/BiDexDiffuser" />
             </RecentBranchesForRepo>
           </list>
         </option>
@@ -65,17 +127,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.eval_dir.executor&quot;: &quot;Run&quot;,
-    &quot;Python.gen_deploy_scripts.executor&quot;: &quot;Run&quot;,
-    &quot;Python.split_data.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/zhuoli/dobot_xtrainer&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.eval_dir.executor": "Run",
+    "Python.gen_deploy_scripts.executor": "Run",
+    "Python.split_data.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "#1 on master",
+    "last_opened_file_path": "/home/zhuoli/bidexdiffuser",
+    "settings.editor.selected.configurable": "com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/robots" />
@@ -155,16 +217,18 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.split_data" />
         <item itemvalue="Python.gen_deploy_scripts" />
         <item itemvalue="Python.eval_dir" />
         <item itemvalue="Python.split_data" />
+        <item itemvalue="Python.gen_deploy_scripts" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-98f27166c754-ba05f1cad1b1-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.21829.153" />
+        <option value="bundled-python-sdk-0e3be3396995-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23339.19" />
       </set>
     </attachedChunks>
   </component>

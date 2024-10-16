@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="VcsDirectoryMappings">
-    <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../Bi-DexManip" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../ChatGPT-Robot-Manipulation-Prompts" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../CuriGPT" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../DexGPT" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../Documents/dobot_xtrainer" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../Documents/walker_6dof_grasping" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../PycharmProjects/BiDexDiffuser" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../PycharmProjects/CuriGPT" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../PycharmProjects/CuriGPT-ros" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../PycharmProjects/Temporary_Script" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../Rofunc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../SayFunc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../VLpart/VLPart" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../VLpart/detectron2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../curigpt_ws/src/curigpt_ros" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../deoxys_control" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../deoxys_control/deoxys/libfranka" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../deoxys_control/deoxys/libfranka/common" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../deoxys_control/deoxys/protobuf" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../deoxys_control/deoxys/protobuf/third_party/abseil-cpp" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../deoxys_control/deoxys/protobuf/third_party/benchmark" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../deoxys_control/deoxys/protobuf/third_party/googletest" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../deoxys_control/deoxys/protobuf/third_party/jsoncpp" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../deoxys_control/deoxys/spdlog" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../deoxys_control/deoxys/yaml-cpp" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../deoxys_control/deoxys/zmqpp" vcs="" />
+    <mapping directory="$PROJECT_DIR$/../dobot_xtrainer" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../franka_ws/src/easy_handeye" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../grounded-segment-any-parts" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../librealsense" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../librealsense/build/third-party/json" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../librealsense/build/third-party/libcurl" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../realsense_ws/src/ddynamic_reconfigure" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../realsense_ws/src/realsense-ros" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../walker_easy_handeye_ws/src/easy_handeye" vcs="Git" />
   </component>
 </project>
