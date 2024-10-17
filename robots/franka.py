@@ -1,61 +1,72 @@
 from typing import Dict
-
 import numpy as np
-
+from deoxys import config_root
+from deoxys.franka_interface import FrankaInterface
+from deoxys.utils import YamlConfig
+from typing import Union
 from robots.robot import Robot
-
-
+from deoxys.utils.log_utils import get_deoxys_example_logger
+from deoxys.utils.config_utils import (get_default_controller_config,verify_controller_config)
+from examples.osc_control import (osc_move, move_to_target_pose)
+logger = get_deoxys_example_logger()
+import rospy
 class FrankaRobot(Robot):
     """A class representing a Franka robot."""
 
     def __init__(
         self,
-        robot_ip: str = "196.168.0.120",
+        which_arm: str = "",
         no_gripper: bool = False,
         gripper_type="",
-        grip_range=110,
-        port_idx=-1,
+        gripper_dim: int = 2
     ):
-        import rtde_control
-        import rtde_receive
-
-        [print("in franka robot:", robot_ip) for _ in range(3)]
-
-        # initializing the franka related interfaces for real-time data exchange and control
-        self.robot = rtde_control.RTDEControlInterface(robot_ip)
-        self.r_inter = rtde_receive.RTDEReceiveInterface(robot_ip)
-
-
-
+        """Initialize the Franka robot and its gripper."""
+        [print("in franka robot:", which_arm) for _ in range(3)]
         if not no_gripper:
-            if gripper_type == "softhand":
+            assert gripper_type in ["soft_hand", "franka_gripper"], "Gripper type must be either 'soft_hand' or 'franka_gripper'"
+            if gripper_type == "soft_hand":
                 from robots.softhand_gripper import SoftHandGripper
-
-                self.gripper = SoftHandGripper(port_idx=port_idx, grip_range=grip_range)
-                self.gripper.connect()
+                self.gripper_dim = 2
+                if which_arm == "right":
+                    soft_hand_device_id = 1
+                    self.robot_interface = FrankaInterface(
+                        config_root + "/charmander_right.yml", has_gripper=not no_gripper, use_visualizer=False,
+                        gripper_type=gripper_type
+                    )
+                    logger.debug(["The ", which_arm, " robot arm interface has been initalized."])
+                else:
+                    soft_hand_device_id = 2
+                    self.robot_interface = FrankaInterface(
+                        config_root + "/charmander_left.yml", has_gripper=not no_gripper, use_visualizer=False,
+                        gripper_type=gripper_type
+                    )
+                    logger.debug(["The ", which_arm, " robot arm interface has been initalized."])
+                self.gripper = SoftHandGripper(soft_hand_device_id)
+                self.gripper.start_subscriber()
+            elif gripper_type == "franka_gripper":
+                self.gripper_dim = 1
+                self.robot_interface = FrankaInterface(
+                    config_root + "/charmander_"+which_arm+".yml", has_gripper=not no_gripper, use_visualizer=False,
+                    gripper_type=gripper_type
+                )
+        else:
+            if which_arm == "left":
+                self.robot_interface = FrankaInterface(
+                    config_root + "/charmander_left.yml", has_gripper=not no_gripper, use_visualizer=False
+                )
+                logger.debug(["The ", which_arm, " robot arm interface has been initalized."])
+            elif which_arm == "right":
+                self.robot_interface = FrankaInterface(
+                    config_root + "/charmander_right.yml", has_gripper=not no_gripper, use_visualizer=False
+                )
+                logger.debug(["The ", which_arm, "robot arm interface has been initalized."])
             else:
-                # from robots.robotiq_gripper import RobotiqGripper
+                raise ValueError("which_arm should be either 'left' or 'right'")
 
-                # self.gripper = RobotiqGripper()
-                # self.gripper.connect(hostname=robot_ip, port=63352)
-                # TODO: implement the panda gripper
+        [print("connect ", which_arm, "robot arm") for _ in range(3)]
 
-        [print("connect") for _ in range(3)]
-
-        self._free_drive = False
-        self.robot.endFreedriveMode()
         self._use_gripper = not no_gripper
         self.gripper_type = gripper_type
-
-        self.velocity = 0.5
-        self.acceleration = 0.5
-
-        # EEF
-        self.velocity_l = 0.3
-        self.acceleration_l = 0.3
-        self.dt = 1.0 / 500  # 2ms
-        self.lookahead_time = 0.2  # [0.03, 0.2]s smoothens the trajectory
-        self.gain = 100  # [100, 2000] proportional gain for following target position
 
     def num_dofs(self) -> int:
         """Get the number of joints of the robot.
@@ -64,20 +75,25 @@ class FrankaRobot(Robot):
             int: The number of joints of the robot.
         """
         if self._use_gripper:
-            if self.gripper_type == "ability":
-                return 12
+            if self.gripper_type == "soft_hand":
+                return 9
             else:
-                return 7
-        return 6
+                return 8
+        else:
+            return 7
 
-    def _get_gripper_pos(self) -> float:
-        if self.gripper_type in ["ability"]:
-            gripper_pos = self.gripper.get_current_position()
+    def _get_gripper_pos(self) -> np.ndarray:
+        """Get the current state of the Gripper.
+
+        Returns:
+            T: The current state of the Gripper.
+        """
+        if self.gripper_type == "softhand":
+            gripper_pos = np.array(self.gripper.get_current_position())
             return gripper_pos
         else:
-            gripper_pos = self.gripper.get_current_position()
-            assert 0 <= gripper_pos <= 255, "Gripper position must be between 0 and 255"
-            return gripper_pos / 255
+            gripper_pos = self.robot_interface.last_gripper_q
+            return gripper_pos
 
     def get_joint_state(self) -> np.ndarray:
         """Get the current state of the leader robot.
@@ -85,7 +101,7 @@ class FrankaRobot(Robot):
         Returns:
             T: The current state of the leader robot.
         """
-        robot_joints = self.r_inter.getActualQ()
+        robot_joints = np.array(self.robot_interface.last_q)
         if self._use_gripper:
             gripper_pos = self._get_gripper_pos()
             pos = np.append(robot_joints, gripper_pos)
@@ -94,10 +110,11 @@ class FrankaRobot(Robot):
         return pos
 
     def get_joint_velocities(self) -> np.ndarray:
-        return self.r_inter.getActualQd()
+        return self.robot_interface.last_q_d
 
-    def get_eef_speed(self) -> np.ndarray:
-        return self.r_inter.getActualTCPSpeed()
+    # Deoxy下缺少TCPspeed获取接口，但是也许可以通过修改回调函数以100Hz频率速度粗略估算
+    # def get_eef_speed(self) -> np.ndarray:
+    #     return self.r_inter.getActualTCPSpeed()
 
     def get_eef_pose(self) -> np.ndarray:
         """Get the current pose of the leader robot's end effector.
@@ -105,110 +122,61 @@ class FrankaRobot(Robot):
         Returns:
             T: The current pose of the leader robot's end effector.
         """
-        return self.r_inter.getActualTCPPose()
+        return self.robot_interface.last_eef_pose
 
-    def command_joint_state(self, joint_state: np.ndarray) -> None:
+    def command_joint_state(self, des_joint_state: np.ndarray) -> None:
         """Command the leader robot to a given state.
-
         Args:
-            joint_state (np.ndarray): The state to command the leader robot to.
+            des_joint_state (np.ndarray): The state to command the leader robot to.
         """
-        robot_joints = joint_state[:6]
-        t_start = self.robot.initPeriod()
-        self.robot.servoJ(
-            robot_joints,
-            self.velocity,
-            self.acceleration,
-            self.dt,
-            self.lookahead_time,
-            self.gain,
+        controller_type = "JOINT_IMPEDANCE"
+        controller_cfg = get_default_controller_config(controller_type)
+        action = des_joint_state
+        pub_gripper_flag = True
+        while True:
+            if len(self.robot_interface._state_buffer) > 0:
+                logger.info(f"Current Robot joint: {np.round(self.robot_interface.last_q, 3)}")
+                logger.info(f"Desired Robot joint: {np.round(self.robot_interface.last_q_d, 3)}")
+                if (
+                    np.max(
+                        np.abs(
+                            np.array(self.robot_interface._state_buffer[-1].q)
+                            - np.array(des_joint_state)
+                        )
+                    )
+                    < 1e-3
+                ):
+                    break
+            self.robot_interface.control(
+                controller_type=controller_type,
+                action=action,
+                controller_cfg=controller_cfg,
+            )
+            if pub_gripper_flag and self.gripper_type == "softhand":
+                self.gripper.move(des_joint_state[-2:])
+                pub_gripper_flag = False
+
+    def command_eef_pose(self, eef_pose: np.ndarray, num_step: int = 80) -> None:
+        # TODO: The current control method is still incremental position control.
+        controller_type = "OSC_POSE"
+        controller_cfg = get_default_controller_config(controller_type)
+        move_to_target_pose(
+            self.robot_interface,
+            controller_type,
+            controller_cfg,
+            target_delta_pose=eef_pose,
+            num_steps=num_step,
+            num_additional_steps=40,
+            interpolation_method="linear",
         )
-        if self._use_gripper:
-            if self.gripper_type == "ability":
-                assert (
-                    max(joint_state[6:]) <= 1 and min(joint_state[6:]) >= 0
-                ), f"Gripper position must be between 0 and 1:{joint_state[6:]}"
-                self.gripper.move(joint_state[6:], debug=False)
-            elif self.gripper_type == "allegro":
-                self.gripper.move(joint_state[6:])
-            elif self.gripper_type == "dummy":
-                pass
-            else:
-                gripper_pos = joint_state[-1] * 255
-                # print(f"gripper move command: {gripper_pos}")
-                self.gripper.move(int(gripper_pos), 255, 10)
-        self.robot.waitPeriod(t_start)
-
-    def command_eef_pose(self, eef_pose: np.ndarray) -> None:
-        """Command the leader robot to a given state.
-
-        Args:
-            eef_pose (np.ndarray): The EEF pose to command the leader robot to.
-        """
-        pose_command = eef_pose[:6]
-        # print("current TCP:", self.r_inter.getActualTCPPose())
-        # print("pose_command:", pose_command)
-        # input("press enter to continue")
-        t_start = self.robot.initPeriod()
-        self.robot.servoL(
-            pose_command,
-            self.velocity_l,
-            self.acceleration_l,
-            self.dt,
-            self.lookahead_time,
-            self.gain,
-        )
-        if self._use_gripper:
-            if self.gripper_type == "ability":
-                assert (
-                    max(eef_pose[6:]) <= 1 and min(eef_pose[6:]) >= 0
-                ), f"Gripper position must be between 0 and 1:{eef_pose[6:]}"
-                self.gripper.move(eef_pose[6:])
-            else:
-                gripper_pos = eef_pose[-1] * 255
-                # print(f"gripper move command: {gripper_pos}")
-                self.gripper.move(int(gripper_pos), 255, 10)
-        self.robot.waitPeriod(t_start)
-
-    def freedrive_enabled(self) -> bool:
-        """Check if the robot is in freedrive mode.
-
-        Returns:
-            bool: True if the robot is in freedrive mode, False otherwise.
-        """
-        return self._free_drive
-
-    def set_freedrive_mode(self, enable: bool) -> None:
-        """Set the freedrive mode of the robot.
-
-        Args:
-            enable (bool): True to enable freedrive mode, False to disable it.
-        """
-        if enable and not self._free_drive:
-            self._free_drive = True
-            self.robot.freedriveMode()
-        elif not enable and self._free_drive:
-            self._free_drive = False
-            self.robot.endFreedriveMode()
-
     def get_observations(self) -> Dict[str, np.ndarray]:
         joints = self.get_joint_state()
-        joint_vels = self.get_joint_velocities()
-        eef_speed = self.get_eef_speed()
         pos_quat = self.get_eef_pose()
-        gripper_pos = np.array([joints[-1]])
-        if self._use_gripper and self.gripper_type == "ability":
-            # include Ability hand touch data
-            touch = self.gripper.get_current_touch()
-        else:
-            touch = np.zeros(30)
+        gripper_pos = self._get_gripper_pos()
         return {
             "joint_positions": joints,
-            "joint_velocities": joint_vels,
-            "eef_speed": eef_speed,
-            "ee_pos_quat": pos_quat,  # TODO: this is pos_rot actually
+            "ee_pos_quat": pos_quat,  # TODO: this is pos_rot(4×4) actually
             "gripper_position": gripper_pos,
-            "touch": touch,
         }
 
 

@@ -4,8 +4,8 @@ import threading
 import time
 
 import numpy as np
-import serial
-from serial.tools import list_ports
+# import serial
+# from serial.tools import list_ports
 
 
 ## Send Miscellanous Command to Ability Hand

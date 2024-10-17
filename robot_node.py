@@ -15,7 +15,7 @@ class ZMQServerRobot:
         self,
         robot: Robot,
         port: int = DEFAULT_ROBOT_PORT,
-        host: str = "127.0.0.1",
+        host: str = "192.168.2.2",
     ):
         self._robot = robot
         self._context = zmq.Context()
@@ -56,7 +56,6 @@ class ZMQServerRobot:
                     raise NotImplementedError(
                         f"Invalid method: {method}, {args, result}"
                     )
-
                 self._socket.send(pickle.dumps(result))
             except zmq.Again:
                 print(self._timout_message)
@@ -70,7 +69,7 @@ class ZMQServerRobot:
 class ZMQClientRobot(Robot):
     """A class representing a ZMQ client for a leader robot."""
 
-    def __init__(self, port: int = DEFAULT_ROBOT_PORT, host: str = "127.0.0.1"):
+    def __init__(self, port: int = DEFAULT_ROBOT_PORT, host: str = "192.168.2.1"):
         self._context = zmq.Context()
         self._socket = self._context.socket(zmq.REQ)
         self._socket.connect(f"tcp://{host}:{port}")
@@ -114,7 +113,7 @@ class ZMQClientRobot(Robot):
         result = pickle.loads(self._socket.recv())
         return result
 
-    def command_eef_pose(self, eef_pose: np.ndarray) -> None:
+    def command_eef_pose(self, eef_pose: np.ndarray, num_step: int = 80) -> None:
         """Command the leader robot to the given state.
 
         Args:
@@ -122,7 +121,8 @@ class ZMQClientRobot(Robot):
         """
         request = {
             "method": "command_eef_pose",
-            "args": {"eef_pose": eef_pose},
+            "args": {"eef_pose": eef_pose,
+                     "num_step": num_step},
         }
         send_message = pickle.dumps(request)
         self._socket.send(send_message)
