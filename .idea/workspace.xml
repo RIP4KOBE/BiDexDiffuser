@@ -16,11 +16,11 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/../PycharmProjects/BiDexDiffuser" value="HATO_LDX" />
         <entry key="$PROJECT_DIR$" value="HATO_LDX" />
+        <entry key="$PROJECT_DIR$/../PycharmProjects/BiDexDiffuser" value="HATO_LDX" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../Bi-DexManip" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -29,17 +29,17 @@
     &quot;assignee&quot;: &quot;RIP4KOBE&quot;
   }
 }</component>
-  <component name="GitHubPullRequestState"><![CDATA[{
-  "prStates": [
+  <component name="GitHubPullRequestState">{
+  &quot;prStates&quot;: [
     {
-      "id": {
-        "id": "PR_kwDOMFTegc5-pOCA",
-        "number": 1
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOMFTegc5-pOCA&quot;,
+        &quot;number&quot;: 1
       },
-      "lastSeen": 1729091136608
+      &quot;lastSeen&quot;: 1729091136608
     }
   ]
-}]]></component>
+}</component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
     <option name="recentBranches">
@@ -128,18 +128,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;Python.eval_dir.executor&quot;: &quot;Run&quot;,
-    &quot;Python.gen_deploy_scripts.executor&quot;: &quot;Run&quot;,
-    &quot;Python.split_data.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#1 on main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/zhuoli/bidexdiffuser&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "Python.eval_dir.executor": "Run",
+    "Python.gen_deploy_scripts.executor": "Run",
+    "Python.split_data.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/zhuoli/BiDexDiffuser",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/robots" />
@@ -367,6 +367,43 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/../Bi-DexManip" />
+      <path value="$PROJECT_DIR$/../ChatGPT-Robot-Manipulation-Prompts" />
+      <path value="$PROJECT_DIR$/../CuriGPT" />
+      <path value="$PROJECT_DIR$/../DexGPT" />
+      <path value="$PROJECT_DIR$/../Documents/dobot_xtrainer" />
+      <path value="$PROJECT_DIR$/../Documents/walker_6dof_grasping" />
+      <path value="$PROJECT_DIR$/../PycharmProjects/BiDexDiffuser" />
+      <path value="$PROJECT_DIR$/../PycharmProjects/CuriGPT" />
+      <path value="$PROJECT_DIR$/../PycharmProjects/CuriGPT-ros" />
+      <path value="$PROJECT_DIR$/../PycharmProjects/Temporary_Script" />
+      <path value="$PROJECT_DIR$/../Rofunc" />
+      <path value="$PROJECT_DIR$/../SayFunc" />
+      <path value="$PROJECT_DIR$/../VLpart/VLPart" />
+      <path value="$PROJECT_DIR$/../VLpart/detectron2" />
+      <path value="$PROJECT_DIR$/../curigpt_ws/src/curigpt_ros" />
+      <path value="$PROJECT_DIR$/../deoxys_control" />
+      <path value="$PROJECT_DIR$/../deoxys_control/deoxys/libfranka" />
+      <path value="$PROJECT_DIR$/../deoxys_control/deoxys/libfranka/common" />
+      <path value="$PROJECT_DIR$/../deoxys_control/deoxys/protobuf" />
+      <path value="$PROJECT_DIR$/../deoxys_control/deoxys/protobuf/third_party/abseil-cpp" />
+      <path value="$PROJECT_DIR$/../deoxys_control/deoxys/protobuf/third_party/benchmark" />
+      <path value="$PROJECT_DIR$/../deoxys_control/deoxys/protobuf/third_party/googletest" />
+      <path value="$PROJECT_DIR$/../deoxys_control/deoxys/protobuf/third_party/jsoncpp" />
+      <path value="$PROJECT_DIR$/../deoxys_control/deoxys/spdlog" />
+      <path value="$PROJECT_DIR$/../deoxys_control/deoxys/yaml-cpp" />
+      <path value="$PROJECT_DIR$/../deoxys_control/deoxys/zmqpp" />
+      <path value="$PROJECT_DIR$/../dobot_xtrainer" />
+      <path value="$PROJECT_DIR$/../franka_ws/src/easy_handeye" />
+      <path value="$PROJECT_DIR$/../grounded-segment-any-parts" />
+      <path value="$PROJECT_DIR$/../librealsense" />
+      <path value="$PROJECT_DIR$/../librealsense/build/third-party/json" />
+      <path value="$PROJECT_DIR$/../librealsense/build/third-party/libcurl" />
+      <path value="$PROJECT_DIR$/../realsense_ws/src/ddynamic_reconfigure" />
+      <path value="$PROJECT_DIR$/../realsense_ws/src/realsense-ros" />
+      <path value="$PROJECT_DIR$/../walker_easy_handeye_ws/src/easy_handeye" />
+    </ignored-roots>
     <MESSAGE value="update comment of run_env.py" />
     <MESSAGE value="implement part of the franka data collection code" />
     <MESSAGE value="Debug the training, evaluation and deployment code" />
